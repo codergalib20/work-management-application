@@ -1,7 +1,8 @@
-import { Box, Button, Container, Grid, Paper } from "@mui/material";
+import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import LoginFormImage from "../../assets/man-with-laptop.png";
 import { usePageStyles } from "../../StyleSheet/PagesStyleSheet";
 
@@ -33,9 +34,12 @@ export default function Login() {
     >
       <Container>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
             <Paper elevation={24} className={mainForm}>
               <form onSubmit={handleSubmit(onSubmit)}>
+                <Typography variant="h4" color="#001e3c" fontWeight="700">
+                  Login here
+                </Typography>
                 <TextField
                   className={loginRegisterTextField}
                   id="outlined-textarea"
@@ -64,17 +68,26 @@ export default function Login() {
                     errors.password?.type === "required" &&
                     "Password is required"}
                 </span>
-                <Button
-                  className={singleWorkCardButton}
-                  type="submit"
-                  onClick={() => setRemoveError(true)}
-                >
-                  Login
-                </Button>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <Button
+                      className={singleWorkCardButton}
+                      type="submit"
+                      onClick={() => setRemoveError(true)}
+                    >
+                      Login
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Link style={{ textDecoration: "none" }} to="/register">
+                      <Button>are you new user?</Button>
+                    </Link>
+                  </Grid>
+                </Grid>
               </form>
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
             <img style={{ maxWidth: "100%" }} src={LoginFormImage} alt="" />
           </Grid>
         </Grid>
