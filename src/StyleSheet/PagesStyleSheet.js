@@ -31,14 +31,28 @@ export const usePageStyles = makeStyles({
     minHeight: "300px",
     "& span": {
       display: "block",
-      marginBottom: '1rem',
-      color: '#e83a3b'
+      marginBottom: "1rem",
+      color: "#e83a3b",
     },
   },
   loginRegisterTextField: {
     marginTop: "1rem !important",
   },
-
+  // Our Work Component Styles__________________
+  ourWorkCard: {
+    background: "#0a1929 !important",
+    padding: "1rem",
+    "& h4": {
+      color: "#fff",
+      textAlign: "center",
+      fontWeight: 300
+    },
+    "& p": {
+      color: "#fff",
+      textAlign: "center",
+      fontWeight: 300
+    },
+  },
   // Global Style Button===================================
   singleWorkCardButton: {
     background: "#001e3c !important",
