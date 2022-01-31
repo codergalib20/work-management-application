@@ -19,6 +19,7 @@ export default function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { user, logOut } = useAuth();
+  console.log(user);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -82,6 +83,11 @@ export default function Header() {
                   <Typography textAlign="center">Home</Typography>
                 </Link>
               </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Link to="/mywork">
+                  <Typography textAlign="center">My Work</Typography>
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -140,7 +146,9 @@ export default function Header() {
                   <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Setting</Typography>
+                  <Link to="/dashboard">
+                    <Typography textAlign="center">Dashboard</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={(handleCloseUserMenu, logOut)}>
                   <Typography textAlign="center">Logout</Typography>

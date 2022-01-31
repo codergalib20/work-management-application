@@ -19,15 +19,19 @@ export default function Register() {
       swal("Password not match", "", "error");
       return;
     }
-    newUser(data.email, data.password, data.name, history);
+    newUser(
+      data.email,
+      data.password,
+      `${data.firstName} ${data.lastName}`,
+      history
+    );
   };
   const [removeError, setRemoveError] = useState(true);
   setTimeout(() => {
     setRemoveError(false);
   }, 6000);
   console.log(removeError);
-  const { singleWorkCardButton, mainForm } =
-    usePageStyles();
+  const { singleWorkCardButton, mainForm } = usePageStyles();
   return (
     <Box sx={{ background: "#001e3c", minHeight: "100vh", py: 5 }}>
       <Container>

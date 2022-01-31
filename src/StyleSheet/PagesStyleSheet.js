@@ -45,13 +45,33 @@ export const usePageStyles = makeStyles({
     "& h4": {
       color: "#fff",
       textAlign: "center",
-      fontWeight: 300
+      fontWeight: 300,
     },
     "& p": {
       color: "#fff",
       textAlign: "center",
-      fontWeight: 300
+      fontWeight: 300,
     },
+  },
+  // My Work DetailWork pages Button Component Style_____________
+  DetailWorkButtonsCard: {
+    padding: "1rem",
+    marginBottom: "0.5rem",
+    cursor: "pointer",
+    "& h6": {
+      color: "#fff",
+    },
+  },
+  // My Work DetailWork pages Links Component Style_____________
+  linksComponentBox: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "380px",
+  },
+  // My Work DetailWork pages SubmitTaskDialog Component Style_____________
+  formTextField:{
+    margin: "10px 0"
   },
   // Global Style Button===================================
   singleWorkCardButton: {
