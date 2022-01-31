@@ -1,21 +1,35 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import AuthProvider from "./contexts/AuthProvider";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
 import Register from "./Pages/Login/Register";
-import Work from "./Pages/MyWorks/Work";
+import MyWork from "./Pages/MyWorks/Work";
 import NotFoundPage from "./Pages/NotFoundPage";
 function App() {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="home" element={<Home />} />
-        <Route path="register" element={<Register />} />
-        <Route path="login" element={<Login />} />
-        <Route path="mywork" element={<Work />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <AuthProvider>
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <PrivateRoute path="/mywork">
+            <MyWork />
+          </PrivateRoute>
+          <Route path="*" element={<NotFoundPage />} />
+        </Switch>
+      </AuthProvider>
     </div>
   );
 }

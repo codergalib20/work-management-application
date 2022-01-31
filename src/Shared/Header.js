@@ -13,7 +13,6 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSharedStyles } from "../StyleSheet/Shared";
-
 const pages = ["home", "my-work", "pricing", "blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -37,7 +36,7 @@ export default function Header() {
   const { headerParent } = useSharedStyles();
 
   return (
-    <AppBar position="static" className={headerParent}>
+    <AppBar position="fixed" className={headerParent}>
       <Container className={headerParent}>
         <Toolbar disableGutters>
           <Typography

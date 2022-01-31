@@ -1,6 +1,7 @@
 import { Box, Button, Container, Grid, Paper, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import LoginFormImage from "../../assets/man-with-laptop.png";
 import { usePageStyles } from "../../StyleSheet/PagesStyleSheet";
 export default function Register() {
@@ -92,13 +93,22 @@ export default function Register() {
                     "Confirm Password is required"}
                 </span>
 
-                <Button
-                  className={singleWorkCardButton}
-                  type="submit"
-                  onClick={() => setRemoveError(true)}
-                >
-                  Sign Up
-                </Button>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <Button
+                      className={singleWorkCardButton}
+                      type="submit"
+                      onClick={() => setRemoveError(true)}
+                    >
+                      Register
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Link style={{ textDecoration: "none" }} to="/login">
+                      <Button>Already register?</Button>
+                    </Link>
+                  </Grid>
+                </Grid>
               </form>
             </Paper>
           </Grid>
