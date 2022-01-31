@@ -2,11 +2,13 @@ import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import LoginFormImage from "../../assets/man-with-laptop.png";
+import useAuth from "../../hooks/useAuth";
 import { usePageStyles } from "../../StyleSheet/PagesStyleSheet";
 
 export default function Login() {
+  const { signIn, isLoading } = useAuth();
   const { singleWorkCardButton, mainForm, loginRegisterTextField } =
     usePageStyles();
   const [removeError, setRemoveError] = useState(true);
@@ -18,9 +20,10 @@ export default function Login() {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  console.log(removeError);
+  const history = useHistory();
+  const location = useLocation();
   const onSubmit = (data) => {
-    console.log(data);
+    signIn(data.email, data.password, location, history);
   };
   return (
     <Box

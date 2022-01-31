@@ -1,24 +1,32 @@
 import { Box, Button, Container, Grid, Paper, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import swal from "sweetalert";
 import LoginFormImage from "../../assets/man-with-laptop.png";
+import useAuth from "../../hooks/useAuth";
 import { usePageStyles } from "../../StyleSheet/PagesStyleSheet";
 export default function Register() {
-  const [removeError, setRemoveError] = useState(true);
-  setTimeout(() => {
-    setRemoveError(false);
-  }, 6000);
+  const { newUser, isLoading } = useAuth();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  console.log(removeError);
+  const history = useHistory();
   const onSubmit = (data) => {
-    console.log(data);
+    if (data.password !== data.password2) {
+      swal("Password not match", "", "error");
+      return;
+    }
+    newUser(data.email, data.password, data.name, history);
   };
-  const { singleWorkCardButton, mainForm, loginRegisterTextField } =
+  const [removeError, setRemoveError] = useState(true);
+  setTimeout(() => {
+    setRemoveError(false);
+  }, 6000);
+  console.log(removeError);
+  const { singleWorkCardButton, mainForm } =
     usePageStyles();
   return (
     <Box sx={{ background: "#001e3c", minHeight: "100vh", py: 5 }}>
