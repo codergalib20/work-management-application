@@ -1,5 +1,6 @@
 import { Box, Container, Grid, Paper } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Header from "../../../Shared/Header";
 import Buttons from "./Buttons";
 import CountDown from "./CountDown";
@@ -7,6 +8,14 @@ import Description from "./Description";
 import Links from "./Links";
 export default function DetailWork() {
   const [showWorkDetail, setShowWorkDetail] = useState("countDown");
+  const [loadSingleWork, setLoadSingleWork] = useState({});
+  const { id } = useParams();
+  useEffect(() => {
+    fetch(`http://localhost:5000/works/${id}`)
+      .then((res) => res.json())
+      .then((data) => setLoadSingleWork(data))
+      .catch((error) => console.log(error));
+  }, [id]);
   return (
     <Box sx={{ py: 12 }}>
       <Header />
@@ -14,9 +23,15 @@ export default function DetailWork() {
         <Grid container spacing={3}>
           <Grid item xs={12} md={7}>
             <Paper elevation={3} sx={{ p: 2, minHeight: "400px" }}>
-              {showWorkDetail === "countDown" && <CountDown />}
-              {showWorkDetail === "description" && <Description />}
-              {showWorkDetail === "links" && <Links />}
+              {showWorkDetail === "countDown" && (
+                <CountDown loadSingleWork={loadSingleWork} />
+              )}
+              {showWorkDetail === "description" && (
+                <Description loadSingleWork={loadSingleWork} />
+              )}
+              {showWorkDetail === "links" && (
+                <Links loadSingleWork={loadSingleWork} />
+              )}
             </Paper>
           </Grid>
           <Grid item xs={12} md={5}>

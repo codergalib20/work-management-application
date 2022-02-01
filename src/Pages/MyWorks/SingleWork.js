@@ -2,6 +2,7 @@ import { Button, Grid, Paper, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import React from "react";
+import { Link } from "react-router-dom";
 import { usePageStyles } from "../../StyleSheet/PagesStyleSheet";
 
 export default function SingleWork({ task }) {
@@ -57,9 +58,11 @@ export default function SingleWork({ task }) {
             </Typography>
           </Box>
           <Box>
-            <Button variant="contained" className={singleWorkCardButton}>
-              Do the task
-            </Button>
+            <Link to={`/singleWork/${task?._id}`}>
+              <Button variant="contained" className={singleWorkCardButton}>
+                Do the task
+              </Button>
+            </Link>
           </Box>
         </Box>
       </Paper>

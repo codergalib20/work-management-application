@@ -1,11 +1,12 @@
 import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
   topHeader: {
-    background: "#23303f",
+    background: "#49d893",
   },
   sidebarBox: {
-    background: "#23303f",
+    background: "#49d893",
     minHeight: "100% !important",
+    overflow: "hidden !important",
   },
   sidebarBoxMenuItem: {
     color: "#23303f !important",
@@ -16,6 +17,7 @@ export const useStyles = makeStyles({
     borderRight: "none !important",
     background: "#fff !important",
     fontSize: "1rem",
+    boxSizing: "border-box",
     paddingLeft: "2rem !important",
     // marginLeft: "10px !important",
     transition: "all 0.4s linear",
@@ -40,7 +42,7 @@ export const useStyles = makeStyles({
   // Calender Component Styles_______
   calendarBox: {
     background: "#49d893",
-    padding: "1rem",
+    padding: "1rem 0 !important",
     display: "flex",
     justifyContent: "center",
   },

@@ -3,18 +3,12 @@ import React from "react";
 import { NavLink, useRouteMatch } from "react-router-dom";
 import { useStyles } from "../StyleSheet/DashboardStyles";
 
-export default function DashboardMenu() {
+export default function DashboardMenu({handleDrawerToggle}) {
   const { sidebarBox, sidebarBoxMenuItem } = useStyles();
   let { url } = useRouteMatch();
-  const menuActiveStyle = {
-    background: "red",
-    color: "#fff",
-    width: "100%",
-    height: "100%",
-  };
 
   return (
-    <List sx={{ paddingLeft: "20px" }} className={sidebarBox}>
+    <List onClink={handleDrawerToggle} sx={{ paddingLeft: "20px" }} className={sidebarBox}>
       <NavLink to={`${url}`}>
         <ListItem button className={sidebarBoxMenuItem}>
           <ListItemText primary="Home" />

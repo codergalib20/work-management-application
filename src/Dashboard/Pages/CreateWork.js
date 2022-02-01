@@ -1,7 +1,13 @@
-import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Paper, TextField, Typography, useMediaQuery, useTheme
+} from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert";
+import useAuth from "../../hooks/useAuth";
 import { useStyles } from "../../StyleSheet/DashboardStyles";
 import Calendar from "./Calendar/Calendar";
 import Clock from "./Calendar/Clock";
@@ -11,6 +17,10 @@ export default function CreateWork() {
   const [calenderValue, setCalenderValue] = useState(new Date());
   const [clockValue, setClockValue] = useState(new Date());
   const { register, handleSubmit, reset } = useForm();
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const { user } = useAuth();
   const onSubmit = (data) => {
     data.time = clockValue;
     data.today = new Date();
@@ -45,7 +55,7 @@ export default function CreateWork() {
       </Typography>
       <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={3}>
+          <Grid sx={{ width: "100%" }} container spacing={isSmall ? 0 : 2}>
             <Grid item xs={12} md={6}>
               <Paper elevation={3} sx={{ p: 1, mb: 1 }}>
                 <TextField
@@ -73,6 +83,7 @@ export default function CreateWork() {
                   autoComplete="current-password"
                   fullWidth
                   required
+                  defaultValue={user?.displayName}
                   {...register("creator", { required: true })}
                 />
               </Paper>

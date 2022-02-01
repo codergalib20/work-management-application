@@ -31,7 +31,7 @@ export default function Dashboard(props) {
   let { path } = useRouteMatch();
 
   const drawer = (
-    <div style={{ background: "#23303f" }}>
+    <div style={{ background: "#49d893" }}>
       <Box variant="contained" textAlign="center" sx={{ py: "0.8rem" }}>
         <Link to="/home">
           <Button className={headerHomeButton} variant="contained">
