@@ -46,7 +46,7 @@ export default function SingleWork({ task }) {
                 py: "0.5rem",
               }}
             >
-              {task?.body.slice(0, 100)}...
+              {task?.task_body.slice(0, 100)}...
             </Typography>
             <Typography
               variant="h6"

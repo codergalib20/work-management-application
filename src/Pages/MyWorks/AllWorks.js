@@ -4,7 +4,7 @@ import SingleWork from "./SingleWork";
 export default function AllWorks() {
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    fetch("/tasks.json")
+    fetch("http://localhost:5000/works")
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);
