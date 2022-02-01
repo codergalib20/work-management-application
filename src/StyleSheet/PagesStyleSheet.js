@@ -75,7 +75,7 @@ export const usePageStyles = makeStyles({
   },
   // Global Style Button===================================
   singleWorkCardButton: {
-    background: "#001e3c !important",
+    background: "#49d893 !important",
     fontWeight: 600,
     padding: "9px 35px !important",
     "&:hover": {

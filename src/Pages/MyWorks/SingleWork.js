@@ -5,12 +5,26 @@ import React from "react";
 import { usePageStyles } from "../../StyleSheet/PagesStyleSheet";
 
 export default function SingleWork({ task }) {
+  const topBrandCard = {
+    background: "#49d893",
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "28px",
+    color: "#fff",
+    position: "absolute",
+    top: "1rem",
+    right: "1rem",
+  };
   const theme = useTheme();
-  const { thumbnailHover, singleWorkCard, singleWorkCardButton } =
-    usePageStyles();
+  const { singleWorkCardButton } = usePageStyles();
   return (
     <Grid item xs={12} sm={6}>
-      <Paper>
+      <Paper elevation={3} sx={{ position: "relative" }}>
+        <span style={topBrandCard}>{task?.task_name?.slice(0, 1)}</span>
         <Box
           sx={{
             display: "flex",
@@ -25,13 +39,19 @@ export default function SingleWork({ task }) {
             </Typography>
             <Typography
               variant="h5"
-              sx={{ fontSize: "14px", color: "#001e3c" }}
+              sx={{
+                fontSize: "15px",
+                color: "#333",
+                fontWeight: 500,
+                py: "0.5rem",
+              }}
             >
               {task?.body.slice(0, 100)}...
             </Typography>
             <Typography
               variant="h6"
-              sx={{ fontSize: "16px", fontWeight: 600, color: "#e83a3b" }}
+              gutterBottom
+              sx={{ fontSize: "16px", fontWeight: 600, color: "#333" }}
             >
               {task?.creator}
             </Typography>

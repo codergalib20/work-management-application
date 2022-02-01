@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AuthProvider from "./contexts/AuthProvider";
+import Dashboard from "./Dashboard/Dashboard";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
@@ -8,7 +9,6 @@ import Register from "./Pages/Login/Register";
 import DetailWork from "./Pages/MyWorks/DetailWork/DetailWork";
 import MyWork from "./Pages/MyWorks/Work";
 import NotFoundPage from "./Pages/NotFoundPage";
-
 
 function App() {
   return (
@@ -32,6 +32,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/singleWork/:id">
             <DetailWork />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
           </PrivateRoute>
           <Route path="*" element={<NotFoundPage />} />
         </Switch>
