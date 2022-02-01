@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import swal from "sweetalert";
 import { useStyles } from "../../StyleSheet/DashboardStyles";
 import Calendar from "./Calendar/Calendar";
 import Clock from "./Calendar/Clock";
@@ -9,10 +10,25 @@ export default function CreateWork() {
   const { createWorkSubmitButton } = useStyles();
   const [calenderValue, setCalenderValue] = useState(new Date());
   const [clockValue, setClockValue] = useState(new Date());
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     data.time = clockValue;
-    console.log(data);
+    data.today = new Date();
+    fetch("http://localhost:5000/create-work", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.insertedId) {
+          swal("Good Job!", "New Task added successfully", "success");
+          reset();
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
