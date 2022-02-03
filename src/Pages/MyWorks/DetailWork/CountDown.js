@@ -24,7 +24,7 @@ export default function CountDown({ loadSingleWork,setTaskSubmitLastTime }) {
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
     setSecond(seconds);
   }, 1000);
-  0 <= day ? setTaskSubmitLastTime("onetime") : setTaskSubmitLastTime("losTime")
+  0 <= day ? setTaskSubmitLastTime("onTime") : setTaskSubmitLastTime("losTime")
   return (
     <Box>
       <Typography className={countdownTitle} variant="h4">
