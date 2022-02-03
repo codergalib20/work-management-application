@@ -22,4 +22,5 @@ code {
 }
 .Mui-selected {
   background-color: #49d893 !important;
+  color: "#fff !important";
 }

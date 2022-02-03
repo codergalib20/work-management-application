@@ -8,7 +8,7 @@ export default function Buttons({ setShowWorkDetail, showWorkDetail }) {
       <Paper
         sx={{
           background: `${
-            showWorkDetail === "countDown" ? "#e83a3b" : "#f5a623"
+            showWorkDetail === "countDown" ? "#e83a3b" : "#49d893"
           }`,
         }}
         className={DetailWorkButtonsCard}
@@ -20,7 +20,7 @@ export default function Buttons({ setShowWorkDetail, showWorkDetail }) {
       <Paper
         sx={{
           background: `${
-            showWorkDetail === "description" ? "#e83a3b" : "#146aff"
+            showWorkDetail === "description" ? "#e83a3b" : "#49d893"
           }`,
         }}
         className={DetailWorkButtonsCard}
@@ -31,7 +31,7 @@ export default function Buttons({ setShowWorkDetail, showWorkDetail }) {
       </Paper>
       <Paper
         sx={{
-          background: `${showWorkDetail === "links" ? "#e83a3b" : "#23303f"}`,
+          background: `${showWorkDetail === "links" ? "#e83a3b" : "#49d893"}`,
         }}
         className={DetailWorkButtonsCard}
         onClick={() => setShowWorkDetail("links")}

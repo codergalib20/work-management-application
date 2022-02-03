@@ -36,7 +36,7 @@ export default function SingleWork({ task }) {
         >
           <Box>
             <Typography variant="h5" fontWeight="600">
-              {task?.task_name}
+              {task?.task_name?.slice(0, 20)}...
             </Typography>
             <Typography
               variant="h5"

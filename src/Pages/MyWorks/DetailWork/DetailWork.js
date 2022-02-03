@@ -9,6 +9,7 @@ import Links from "./Links";
 export default function DetailWork() {
   const [showWorkDetail, setShowWorkDetail] = useState("countDown");
   const [loadSingleWork, setLoadSingleWork] = useState({});
+  const [taskSubmitLastTime, setTaskSubmitLastTime] = useState(""); 
   const { id } = useParams();
   useEffect(() => {
     fetch(`http://localhost:5000/works/${id}`)
@@ -22,15 +23,15 @@ export default function DetailWork() {
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} md={7}>
-            <Paper elevation={3} sx={{ p: 2, minHeight: "400px" }}>
+            <Paper elevation={3} sx={{ p: 2, minHeight: "400px", background: "#49d893" }}>
               {showWorkDetail === "countDown" && (
-                <CountDown loadSingleWork={loadSingleWork} />
+                <CountDown setTaskSubmitLastTime={setTaskSubmitLastTime} loadSingleWork={loadSingleWork} />
               )}
               {showWorkDetail === "description" && (
                 <Description loadSingleWork={loadSingleWork} />
               )}
               {showWorkDetail === "links" && (
-                <Links loadSingleWork={loadSingleWork} />
+                <Links taskSubmitLastTime={taskSubmitLastTime} loadSingleWork={loadSingleWork} />
               )}
             </Paper>
           </Grid>

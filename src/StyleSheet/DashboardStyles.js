@@ -58,4 +58,25 @@ export const useStyles = makeStyles({
     padding: "0.8rem 2rem !important",
     marginTop: "1rem !important",
   },
+  // Countdown Page Styles in Dashboard________
+  countdownTitle: {
+    fontSize: "40px",
+    textAlign: "center",
+    color: "#23303f",
+    fontWeight: 600,
+  },
+  countdownTime: {
+    fontSize: "60px",
+    fontWeight: 700,
+    color: "#23303f",
+    height: "250px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    textAlign: "center",
+    "@media (max-width: 500px)": {
+      fontSize: "40px",
+    },
+  },
 });

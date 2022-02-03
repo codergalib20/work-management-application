@@ -59,7 +59,7 @@ export const usePageStyles = makeStyles({
     marginBottom: "0.5rem",
     cursor: "pointer",
     "& h6": {
-      color: "#fff",
+      color: "#23303f",
     },
   },
   // My Work DetailWork pages Links Component Style_____________

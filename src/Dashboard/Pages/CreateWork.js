@@ -2,7 +2,11 @@ import {
   Box,
   Button,
   Grid,
-  Paper, TextField, Typography, useMediaQuery, useTheme
+  Paper,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme
 } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -10,19 +14,19 @@ import swal from "sweetalert";
 import useAuth from "../../hooks/useAuth";
 import { useStyles } from "../../StyleSheet/DashboardStyles";
 import Calendar from "./Calendar/Calendar";
-import Clock from "./Calendar/Clock";
 
 export default function CreateWork() {
   const { createWorkSubmitButton } = useStyles();
   const [calenderValue, setCalenderValue] = useState(new Date());
-  const [clockValue, setClockValue] = useState(new Date());
+
+  // console.log(calenderValue.getHours())
   const { register, handleSubmit, reset } = useForm();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { user } = useAuth();
   const onSubmit = (data) => {
-    data.time = clockValue;
+    data.submitTime = calenderValue.getTime();
     data.today = new Date();
     fetch("http://localhost:5000/create-work", {
       method: "POST",
@@ -109,7 +113,6 @@ export default function CreateWork() {
               </Paper>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Clock clockValue={clockValue} setClockValue={setClockValue} />
               <Calendar
                 calenderValue={calenderValue}
                 setCalenderValue={setCalenderValue}

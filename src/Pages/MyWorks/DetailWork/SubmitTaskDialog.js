@@ -4,6 +4,8 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import React from "react";
 import { useForm } from "react-hook-form";
+import swal from "sweetalert";
+import useAuth from "../../../hooks/useAuth";
 import { usePageStyles } from "../../../StyleSheet/PagesStyleSheet";
 const style = {
   position: "absolute",
@@ -21,25 +23,59 @@ const style = {
   boxSizing: "border-box",
 };
 
-export default function SubmitTaskDialog({ openDialog, setOpenDialog }) {
-  const { DialogTitle, fullDialog, dialogBody, dialogFooter, formTextField } =
-    usePageStyles();
-    const {
-      register,
-      handleSubmit,
-      watch,
-      formState: { errors },
-      reset
-    } = useForm();
+export default function SubmitTaskDialog({
+  openDialog,
+  setOpenDialog,
+  taskSubmitLastTime,
+  loadSingleWork,
+}) {
+  const { formTextField } = usePageStyles();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm();
   const handleOpen = () => {
     setOpenDialog(true);
   };
   const handleClose = () => {
     setOpenDialog(false);
-    reset()
+    reset();
   };
-  
-  const onSubmit = (data) => console.log(data);
+  const { user } = useAuth();
+
+  // console.log(user);
+  const onSubmit = (data) => {
+    data.taskId = loadSingleWork?._id;
+    data.lastTime = taskSubmitLastTime;
+    if (taskSubmitLastTime === "onTime") {
+      data.mark = 30;
+    } else {
+      data.mark = 15;
+    }
+    data.email = user?.email;
+    data.userName = user?.displayName;
+
+    setOpenDialog(false);
+    fetch("http://localhost:5000/complete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.insertedId) {
+          swal("Good Job!", "New Task added successfully", "success");
+          reset();
+        }
+      })
+      .catch((err) => console.log(err));
+    reset();
+  };
 
   return (
     <Modal
@@ -64,7 +100,9 @@ export default function SubmitTaskDialog({ openDialog, setOpenDialog }) {
               variant="standard"
               {...register("livelink", { required: true })}
             />
-            {errors.livelink && <span style={{color: "#e83a3b"}}>This field is required</span>}
+            {errors.livelink && (
+              <span style={{ color: "#e83a3b" }}>This field is required</span>
+            )}
             <TextField
               className={formTextField}
               id="standard-textarea"
@@ -75,7 +113,9 @@ export default function SubmitTaskDialog({ openDialog, setOpenDialog }) {
               variant="standard"
               {...register("serverlink", { required: true })}
             />
-            {errors.serverlink && <span style={{color: "#e83a3b"}}>This field is required</span>}
+            {errors.serverlink && (
+              <span style={{ color: "#e83a3b" }}>This field is required</span>
+            )}
             <TextField
               className={formTextField}
               id="standard-textarea"
@@ -86,7 +126,9 @@ export default function SubmitTaskDialog({ openDialog, setOpenDialog }) {
               variant="standard"
               {...register("servercodelink", { required: true })}
             />
-            {errors.servercodelink && <span style={{color: "#e83a3b"}}>This field is required</span>}
+            {errors.servercodelink && (
+              <span style={{ color: "#e83a3b" }}>This field is required</span>
+            )}
             <TextField
               className={formTextField}
               id="standard-textarea"
@@ -97,9 +139,11 @@ export default function SubmitTaskDialog({ openDialog, setOpenDialog }) {
               variant="standard"
               {...register("clientcodelink", { required: true })}
             />
-            {errors.clientcodelink && <span style={{color: "#e83a3b"}}>This field is required</span>}
+            {errors.clientcodelink && (
+              <span style={{ color: "#e83a3b" }}>This field is required</span>
+            )}
           </Box>
-          <Box sx={{pt: 2}}>
+          <Box sx={{ pt: 2 }}>
             <Button
               type="submit"
               variant="contained"
@@ -107,7 +151,11 @@ export default function SubmitTaskDialog({ openDialog, setOpenDialog }) {
             >
               Submit
             </Button>
-            <Button onClick={handleClose} variant="contained" sx={{ background: "#001e3c" }}>
+            <Button
+              onClick={handleClose}
+              variant="contained"
+              sx={{ background: "#001e3c" }}
+            >
               <CloseIcon />
             </Button>
           </Box>

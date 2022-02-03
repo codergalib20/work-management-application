@@ -1,8 +1,6 @@
-import HighlightAltIcon from "@mui/icons-material/HighlightAlt";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 export default function Description({ loadSingleWork }) {
-  console.log(loadSingleWork);
   return (
     <Box
       sx={{
@@ -14,14 +12,16 @@ export default function Description({ loadSingleWork }) {
         fontWeight: 600,
       }}
     >
-      <a
-        style={{ display: "flex", alignItems: "center" }}
-        href="#"
-        target="_blank"
-      >
-        Demo link <HighlightAltIcon />
-      </a>
       <Box>
+        <Typography
+          variant="h4"
+          gutterBottom
+          gutterTop
+          color="#333"
+          fontWeight="600"
+        >
+          {loadSingleWork?.task_name}
+        </Typography>
         <Typography textAlign="justify" variant="body2">
           {loadSingleWork?.task_body}
         </Typography>
