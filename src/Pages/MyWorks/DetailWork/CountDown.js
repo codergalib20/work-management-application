@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useStyles } from "../../../StyleSheet/DashboardStyles";
-export default function CountDown({ loadSingleWork,setTaskSubmitLastTime }) {
+export default function CountDown({ loadSingleWork, setTaskSubmitLastTime }) {
   const { countdownTime, countdownTitle } = useStyles();
   const destTime = new Date(
     loadSingleWork.submitTime
@@ -24,21 +24,29 @@ export default function CountDown({ loadSingleWork,setTaskSubmitLastTime }) {
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
     setSecond(seconds);
   }, 1000);
-  0 <= day ? setTaskSubmitLastTime("onTime") : setTaskSubmitLastTime("losTime")
+  0 <= day ? setTaskSubmitLastTime("onTime") : setTaskSubmitLastTime("losTime");
   return (
     <Box>
       <Typography className={countdownTitle} variant="h4">
         Here your task dateline
       </Typography>
-      { 0 <= day ? <Typography
-        sx={{ fontWeight: "600", color: "#23303f", textAlign: "center" }}
-        id="countDownStatus" variant="h5"
-      >Currently task finishing time is</Typography> : <Typography
-      sx={{ fontWeight: "600", color: "#23303f", textAlign: "center" }}
-      id="countDownStatus" variant="h5"
-    >Oops! you will miss task dateline</Typography>
-
-      }
+      {0 <= day ? (
+        <Typography
+          sx={{ fontWeight: "600", color: "#23303f", textAlign: "center" }}
+          id="countDownStatus"
+          variant="h5"
+        >
+          Currently task finishing time is
+        </Typography>
+      ) : (
+        <Typography
+          sx={{ fontWeight: "600", color: "#23303f", textAlign: "center" }}
+          id="countDownStatus"
+          variant="h5"
+        >
+          Oops! dateline is finishing.Please submit for 15 mark
+        </Typography>
+      )}
       {0 <= day ? (
         <Typography className={countdownTime} variant="h4">
           {day} : {hour} : {minute} : {second}

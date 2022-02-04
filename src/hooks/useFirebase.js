@@ -29,6 +29,7 @@ const useFirebase = () => {
         })
           .then(() => {
             swal("Success", "User Created Successfully", "success");
+            onSubmit(email, name);
           })
           .catch((error) => {
             swal("Error", error.message, "error");
@@ -72,6 +73,18 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
+  // Save new user in database_____________
+  const onSubmit = (email, name) => {
+    fetch("http://localhost:5000/create-student", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, name }),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  };
   // Sign Out User
   const logOut = () => {
     signOut(auth)

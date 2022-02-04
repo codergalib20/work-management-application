@@ -12,7 +12,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "96%",
+  width: "96% !important",
   maxWidth: "500px",
   bgcolor: "background.paper",
   border: "2px solid #f63e7b",
@@ -27,6 +27,7 @@ export default function SubmitTaskDialog({
   openDialog,
   setOpenDialog,
   taskSubmitLastTime,
+  checkCompleteCondition,
   loadSingleWork,
 }) {
   const { formTextField } = usePageStyles();
@@ -69,7 +70,11 @@ export default function SubmitTaskDialog({
       .then((res) => res.json())
       .then((result) => {
         if (result.insertedId) {
-          swal("Good Job!", "New Task added successfully", "success");
+          swal(
+            "Good Job!",
+            "Your task submit successfully complete",
+            "success"
+          );
           reset();
         }
       })

@@ -11,19 +11,21 @@ import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import React from "react";
 import { Link, Route, useRouteMatch } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 import { useStyles } from "../StyleSheet/DashboardStyles";
 import DashboardMenu from "./DashboardMenu";
 import CompleteWork from "./Pages/CompleteWork";
+import CreateAdmin from "./Pages/CreateAdmin";
 import CreateWork from "./Pages/CreateWork";
 import Home from "./Pages/Home";
 import ManageWork from "./Pages/ManageWork";
 import Workers from "./Pages/Workers";
-
 const drawerWidth = 240;
 export default function Dashboard(props) {
   const { topHeader, headerHomeButton } = useStyles();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { user } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -31,7 +33,7 @@ export default function Dashboard(props) {
   let { path } = useRouteMatch();
 
   const drawer = (
-    <div style={{ background: "#49d893" }}>
+    <div style={{ background: "#49d893", minHeight: "100vh !important" }}>
       <Box variant="contained" textAlign="center" sx={{ py: "0.8rem" }}>
         <Link to="/home">
           <Button className={headerHomeButton} variant="contained">
@@ -68,7 +70,7 @@ export default function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            {user?.displayName}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -134,6 +136,9 @@ export default function Dashboard(props) {
           </Route>
           <Route exact path={`${path}/completeWork`}>
             <CompleteWork />
+          </Route>
+          <Route exact path={`${path}/createAdmin`}>
+            <CreateAdmin />
           </Route>
         </Box>
       </Box>

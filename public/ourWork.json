@@ -1,19 +1,19 @@
 [
   {
     "_id": "1",
-    "title": "First Item",
+    "title": "Create Web Server",
     "icon": "https://i.ibb.co/bBzT0Nt/Group-1374.png",
     "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quas debitis quia aspernatur asperiores repudiandae nisi exercitationem! Doloribus."
   },
   {
     "_id": "2",
-    "title": "First Item",
+    "title": "User friendly website",
     "icon": "https://i.ibb.co/bBzT0Nt/Group-1374.png",
     "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quas debitis quia aspernatur asperiores repudiandae nisi exercitationem! Doloribus."
   },
   {
     "_id": "3",
-    "title": "First Item",
+    "title": "Desktop Application",
     "icon": "https://i.ibb.co/bBzT0Nt/Group-1374.png",
     "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quas debitis quia aspernatur asperiores repudiandae nisi exercitationem! Doloribus."
   }

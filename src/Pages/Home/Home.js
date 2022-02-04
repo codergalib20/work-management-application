@@ -8,7 +8,6 @@ export default function Home() {
       <Header />
       <Banner />
       <OurWorks />
-      <div>This is home page</div>
     </div>
   );
 }

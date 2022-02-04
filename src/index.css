@@ -24,3 +24,6 @@ code {
   background-color: #49d893 !important;
   color: "#fff !important";
 }
+::-webkit-scrollbar {
+  width: 0px !important;
+}

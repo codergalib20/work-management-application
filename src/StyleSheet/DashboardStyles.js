@@ -5,7 +5,7 @@ export const useStyles = makeStyles({
   },
   sidebarBox: {
     background: "#49d893",
-    minHeight: "100% !important",
+    minHeight: "100vh !important",
     overflow: "hidden !important",
   },
   sidebarBoxMenuItem: {
