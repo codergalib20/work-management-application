@@ -28,7 +28,7 @@ export default function CreateWork() {
   const onSubmit = (data) => {
     data.submitTime = calenderValue.getTime();
     data.today = new Date();
-    fetch("http://localhost:5000/create-work", {
+    fetch("https://work-manage-application.herokuapp.com/create-work", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

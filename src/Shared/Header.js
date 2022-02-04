@@ -1,6 +1,5 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -18,7 +17,7 @@ import { useSharedStyles } from "../StyleSheet/Shared";
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { user, logOut } = useAuth();
+  const { user, logOut, admin } = useAuth();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -121,9 +120,24 @@ export default function Header() {
           {user?.email ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
+                <Typography
+                  variant="h5"
+                  onClick={handleOpenUserMenu}
+                  sx={{
+                    p: 0,
+                    cursor: "pointer",
+                    background: "#fff",
+                    color: "#333",
+                    fontWeight: "500",
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "50%",
+                    lineHeight: "40px",
+                    textAlign: "center",
+                  }}
+                >
+                  {user.displayName.slice(0, 1)}
+                </Typography>
               </Tooltip>
               <Menu
                 sx={{ mt: "45px" }}
@@ -141,14 +155,13 @@ export default function Header() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Profile</Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to="/dashboard">
-                    <Typography textAlign="center">Dashboard</Typography>
-                  </Link>
-                </MenuItem>
+                {admin && (
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Link to="/dashboard">
+                      <Typography textAlign="center">Dashboard</Typography>
+                    </Link>
+                  </MenuItem>
+                )}
                 <MenuItem onClick={(handleCloseUserMenu, logOut)}>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>

@@ -10,7 +10,7 @@ export default function CompleteWork() {
   const [completeWorks, setCompleteWork] = useState([]);
   console.log(completeWorks);
   useEffect(() => {
-    fetch("http://localhost:5000/complete")
+    fetch("https://work-manage-application.herokuapp.com/complete")
       .then((res) => res.json())
       .then((data) => setCompleteWork(data))
       .catch((error) => console.log(error));
@@ -25,7 +25,7 @@ export default function CompleteWork() {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/complete/${id}`, {
+        fetch(`https://work-manage-application.herokuapp.com/complete/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

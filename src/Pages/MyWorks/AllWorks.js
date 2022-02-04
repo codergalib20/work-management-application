@@ -4,7 +4,7 @@ import SingleWork from "./SingleWork";
 export default function AllWorks() {
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/works")
+    fetch("https://work-manage-application.herokuapp.com/works")
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);

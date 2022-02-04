@@ -15,6 +15,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const auth = getAuth();
   const [isLoading, setIsLoading] = useState(true);
+  const [admin, setAdmin] = useState(false);
 
   //   Create New Use with email password
   const newUser = (email, password, name, history) => {
@@ -75,7 +76,7 @@ const useFirebase = () => {
 
   // Save new user in database_____________
   const onSubmit = (email, name) => {
-    fetch("http://localhost:5000/create-student", {
+    fetch("https://work-manage-application.herokuapp.com/create-student", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,6 +86,13 @@ const useFirebase = () => {
       .then((res) => res.json())
       .catch((err) => console.log(err));
   };
+  // Get admin from database___________
+  useEffect(() => {
+    fetch(`https://work-manage-application.herokuapp.com/users/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data.admin))
+      .catch((err) => console.log(err));
+  }, [user]);
   // Sign Out User
   const logOut = () => {
     signOut(auth)
@@ -104,6 +112,7 @@ const useFirebase = () => {
     logOut,
     isLoading,
     signIn,
+    admin,
   };
 };
 

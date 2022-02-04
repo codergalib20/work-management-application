@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 export default function Workers() {
   const [students, setStudents] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/students")
+    fetch("https://work-manage-application.herokuapp.com/students")
       .then((res) => res.json())
       .then((data) => setStudents(data))
       .catch((error) => console.log(error));

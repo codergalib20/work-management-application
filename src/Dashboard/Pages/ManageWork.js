@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 export default function ManageWork() {
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/works")
+    fetch("https://work-manage-application.herokuapp.com/works")
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);
@@ -19,15 +19,15 @@ export default function ManageWork() {
   }, []);
   // Here delete a complete work______________________
   const deleteCartProduct = (id) => {
-        fetch(`http://localhost:5000/create-student`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            const remaining = tasks.filter((service) => service._id !== id);
-            setTasks(remaining);
-          });
-        }
+    fetch(`https://work-manage-application.herokuapp.com/works/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const remaining = tasks.filter((service) => service._id !== id);
+        setTasks(remaining);
+      });
+  };
 
   return (
     <Box>
@@ -38,20 +38,18 @@ export default function ManageWork() {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography sx={{ position: "relative", width: "100%" }}>
-              {task?.task_name}
-              <DeleteIcon
-                onClick={() => deleteCartProduct(task?._id)}
-                sx={{ position: "absolute", top: "0", right: "1rem" }}
-              />
-            </Typography>
+            <Typography>{task?.task_name}</Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails sx={{ position: "relative", width: "100%" }}>
             <Typography>{task?.creator}</Typography>
             <Typography>{task?.date}</Typography>
             <Typography>{task?.today}</Typography>
             <Typography>{task?.task_body}</Typography>
             <Typography>{task?.task_name}</Typography>
+            <DeleteIcon
+              onClick={() => deleteCartProduct(task?._id)}
+              sx={{ position: "absolute", bottom: "0", right: "2rem" }}
+            />
           </AccordionDetails>
         </Accordion>
       ))}

@@ -7,7 +7,7 @@ import adminImage from "../../assets/admin.png";
 export default function CreateAdmin() {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/users/admin/", {
+    fetch("https://work-manage-application.herokuapp.com/users/admin/", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

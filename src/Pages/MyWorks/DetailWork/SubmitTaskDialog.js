@@ -60,7 +60,7 @@ export default function SubmitTaskDialog({
     data.userName = user?.displayName;
 
     setOpenDialog(false);
-    fetch("http://localhost:5000/complete", {
+    fetch("https://work-manage-application.herokuapp.com/complete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

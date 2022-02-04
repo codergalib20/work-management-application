@@ -18,7 +18,7 @@ export default function DetailWork() {
   const { user } = useAuth();
   // Fetch for check work is complete or incomplete___
   useEffect(() => {
-    fetch(`http://localhost:5000/completeEmail/${user?.email}`)
+    fetch(`https://work-manage-application.herokuapp.com/completeEmail/${user?.email}`)
       .then((res) => res.json())
       .then((data) =>
         data.map((singleData) => {
@@ -34,7 +34,7 @@ export default function DetailWork() {
 
   // Fetch For Load data details
   useEffect(() => {
-    fetch(`http://localhost:5000/works/${id}`)
+    fetch(`https://work-manage-application.herokuapp.com/works/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setLoadSingleWork(data);
